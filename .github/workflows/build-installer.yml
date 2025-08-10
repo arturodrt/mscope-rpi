@@ -30,11 +30,11 @@ jobs:
         # Copy binary from container
         docker cp mscope-extract:/usr/local/bin/mscope/mscope ./mscope-rpi-fresh/
         
-        # Copy fonts from container
-        docker cp mscope-extract:/usr/local/bin/mscope/fonts ./mscope-rpi-fresh/
+        # Copy fonts from source (they're copied during Docker build)
+        cp -r fonts ./mscope-rpi-fresh/
         
-        # Copy shaders from container
-        docker cp mscope-extract:/usr/local/bin/mscope/shader ./mscope-rpi-fresh/
+        # Copy shaders from source (they're copied during Docker build)
+        cp -r shader ./mscope-rpi-fresh/
         
         # Copy installation files
         cp install.sh mscope-rpi-fresh/
