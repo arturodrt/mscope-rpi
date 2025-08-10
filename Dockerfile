@@ -1,5 +1,5 @@
 # Multi-stage build for mscope RPi
-FROM --platform=linux/arm64 debian:bookworm-slim as builder
+FROM debian:bookworm-slim as builder
 
 # Install build dependencies
 RUN apt-get update && apt-get install -y \
@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
     libglm-dev \
     libstb-dev \
     git \
+    gcc-aarch64-linux-gnu \
+    g++-aarch64-linux-gnu \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -23,13 +25,15 @@ COPY . .
 # Create build directory
 RUN mkdir -p build-raspberry-pi
 
-# Build the application
+# Build the application for ARM64
 RUN cd build-raspberry-pi && \
-    cmake .. && \
+    cmake .. -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+    -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
+    -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ && \
     make -j$(nproc)
 
-# Runtime stage
-FROM --platform=linux/arm64 debian:bookworm-slim
+# Runtime stage (we'll use the same base for simplicity)
+FROM debian:bookworm-slim
 
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y \

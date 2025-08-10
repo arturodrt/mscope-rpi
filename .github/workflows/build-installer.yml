@@ -15,9 +15,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    # Docker is available by default in GitHub Actions
-      
-    - name: Build with Docker
+        - name: Build with Docker
       run: |
         docker build -t mscope-rpi:latest .
         
