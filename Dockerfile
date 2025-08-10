@@ -1,8 +1,9 @@
 # Multi-stage build for mscope RPi
 FROM debian:bookworm-slim AS builder
 
-# Install build dependencies
-RUN apt-get update && apt-get install -y \
+# Enable multiarch support and install build dependencies
+RUN dpkg --add-architecture arm64 && \
+    apt-get update && apt-get install -y \
     build-essential \
     cmake \
     pkg-config \
@@ -14,6 +15,11 @@ RUN apt-get update && apt-get install -y \
     git \
     gcc-aarch64-linux-gnu \
     g++-aarch64-linux-gnu \
+    libglfw3-dev:arm64 \
+    libgles2-mesa-dev:arm64 \
+    libegl1-mesa-dev:arm64 \
+    libglm-dev:arm64 \
+    libstb-dev:arm64 \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -29,7 +35,11 @@ RUN mkdir -p build-raspberry-pi
 RUN cd build-raspberry-pi && \
     cmake .. -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
     -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
-    -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ && \
+    -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
+    -DCMAKE_FIND_ROOT_PATH=/usr/aarch64-linux-gnu \
+    -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=NEVER \
+    -DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=ONLY \
+    -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY && \
     make -j$(nproc)
 
 # Runtime stage (we'll use the same base for simplicity)
