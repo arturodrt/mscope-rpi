@@ -59,7 +59,7 @@ Exec=mscope-launcher
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=Electronics;Engineering;Science;
+Categories=Electronics;Engineering;Science;Programming;
 Icon=mscope
 EOF
 

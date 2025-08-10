@@ -1,4 +1,3 @@
 #!/bin/bash
-cd "$(dirname "$0")"
 export DISPLAY=:0
-./mscope "$@" 
+/usr/local/bin/mscope/mscope "$@" 
