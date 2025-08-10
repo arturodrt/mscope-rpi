@@ -1,5 +1,5 @@
 # Multi-stage build for mscope RPi
-FROM debian:bookworm-slim as builder
+FROM debian:bookworm-slim AS builder
 
 # Install build dependencies
 RUN apt-get update && apt-get install -y \
@@ -40,8 +40,6 @@ RUN apt-get update && apt-get install -y \
     libglfw3 \
     libgles2-mesa \
     libegl1-mesa \
-    libglm \
-    libstb \
     && rm -rf /var/lib/apt/lists/*
 
 # Create application directory
