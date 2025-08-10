@@ -28,11 +28,11 @@ mkdir -p mscope-rpi-fresh-local
 echo "📋 Copying binary..."
 docker cp mscope-extract-local:/usr/local/bin/mscope/mscope ./mscope-rpi-fresh-local/
 
-# Copy fonts
+# Copy fonts from container
 echo "📋 Copying fonts..."
 docker cp mscope-extract-local:/usr/local/bin/mscope/fonts ./mscope-rpi-fresh-local/
 
-# Copy shaders
+# Copy shaders from container
 echo "📋 Copying shaders..."
 docker cp mscope-extract-local:/usr/local/bin/mscope/shader ./mscope-rpi-fresh-local/
 
