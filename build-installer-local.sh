@@ -34,12 +34,14 @@ cp -r fonts ./mscope-rpi-fresh-local/
 
 # Copy shaders from source (they're copied during Docker build)
 echo "📋 Copying shaders..."
-cp -r shader ./mscope-rpi-fresh-local/
+mkdir -p ./mscope-rpi-fresh-local/shader
+cp shader/*.shader ./mscope-rpi-fresh-local/shader/
 
 # Copy installation files
 echo "📋 Copying installation files..."
 cp install.sh mscope-rpi-fresh-local/
 cp uninstall-mscope.sh mscope-rpi-fresh-local/
+cp mscope-launcher mscope-rpi-fresh-local/
 cp README.md mscope-rpi-fresh-local/
 cp deploy/icon.png mscope-rpi-fresh-local/mscope.png
 

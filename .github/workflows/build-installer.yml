@@ -31,14 +31,16 @@ jobs:
         docker cp mscope-extract:/usr/local/bin/mscope/mscope ./mscope-rpi-fresh/
         
         # Copy fonts from source (they're copied during Docker build)
-        cp -r fonts ./mscope-rpi-fresh/
+        cp -r fonts ./mscope-rpi-fresh/.
         
         # Copy shaders from source (they're copied during Docker build)
-        cp -r shader ./mscope-rpi-fresh/
+        mkdir -p ./mscope-rpi-fresh/shader
+        cp shader/*.shader ./mscope-rpi-fresh/shader/
         
         # Copy installation files
         cp install.sh mscope-rpi-fresh/
         cp uninstall-mscope.sh mscope-rpi-fresh/
+        cp mscope-launcher mscope-rpi-fresh/
         cp README.md mscope-rpi-fresh/
         cp deploy/icon.png mscope-rpi-fresh/mscope.png
         
