@@ -1,0 +1,2 @@
+/usr/bin/aarch64-linux-gnu-ar qc librender_lib.a CMakeFiles/render_lib.dir/openglBufferManagement.cpp.o CMakeFiles/render_lib.dir/openglContext.cpp.o CMakeFiles/render_lib.dir/uiContext.cpp.o
+/usr/bin/aarch64-linux-gnu-ranlib librender_lib.a

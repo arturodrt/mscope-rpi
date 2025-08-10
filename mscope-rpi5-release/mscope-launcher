@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /usr/local/bin/mscope
+export DISPLAY=:0
+./mscope "$@"

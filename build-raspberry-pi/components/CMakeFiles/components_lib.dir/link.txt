@@ -1,0 +1,2 @@
+/usr/bin/aarch64-linux-gnu-ar qc libcomponents_lib.a CMakeFiles/components_lib.dir/graph.cpp.o CMakeFiles/components_lib.dir/triangle.cpp.o
+/usr/bin/aarch64-linux-gnu-ranlib libcomponents_lib.a

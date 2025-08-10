@@ -1,0 +1,2 @@
+/usr/bin/aarch64-linux-gnu-ar qc libshader_lib.a CMakeFiles/shader_lib.dir/shaderUtil.cpp.o
+/usr/bin/aarch64-linux-gnu-ranlib libshader_lib.a

@@ -1,0 +1,84 @@
+name: Build RPi Installer
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-installer:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    # Docker is available by default in GitHub Actions
+      
+    - name: Build with Docker
+      run: |
+        docker build -t mscope-rpi:latest .
+        
+    - name: Extract binary and create installer
+      run: |
+        # Create a container from the image
+        docker create --name mscope-extract mscope-rpi:latest
+        
+        # Create installer directory
+        mkdir -p mscope-rpi-fresh
+        
+        # Copy binary from container
+        docker cp mscope-extract:/usr/local/bin/mscope/mscope ./mscope-rpi-fresh/
+        
+        # Copy fonts
+        docker cp mscope-extract:/usr/local/bin/mscope/fonts ./mscope-rpi-fresh/
+        
+        # Copy shaders
+        docker cp mscope-extract:/usr/local/bin/mscope/shader ./mscope-rpi-fresh/
+        
+        # Copy installation files
+        cp install.sh mscope-rpi-fresh/
+        cp uninstall-mscope.sh mscope-rpi-fresh/
+        cp README.md mscope-rpi-fresh/
+        cp deploy/icon.png mscope-rpi-fresh/mscope.png
+        
+        # Make binary executable
+        chmod +x mscope-rpi-fresh/mscope
+        chmod +x mscope-rpi-fresh/install.sh
+        chmod +x mscope-rpi-fresh/uninstall-mscope.sh
+        
+        # Create installer package
+        cd mscope-rpi-fresh
+        tar -czf ../mscope-rpi-installer.tar.gz *
+        cd ..
+        
+        # Clean up
+        docker rm mscope-extract
+        
+    - name: Upload installer artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: mscope-rpi-installer
+        path: mscope-rpi-installer.tar.gz
+        
+    - name: Create Release (on tag)
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: mscope-rpi-installer.tar.gz
+        title: Release ${{ github.ref_name }}
+        body: |
+          ## mscope RPi Installer
+          
+          Automated build for Raspberry Pi.
+          
+          ### Installation
+          1. Download and extract the installer
+          2. Run `./install.sh`
+          3. Launch with `mscope-launcher`
+          
+          For support, visit: https://cortxtech.com
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
