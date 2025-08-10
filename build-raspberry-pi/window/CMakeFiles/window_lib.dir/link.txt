@@ -1,2 +1,0 @@
-/usr/bin/aarch64-linux-gnu-ar qc libwindow_lib.a CMakeFiles/window_lib.dir/orbWindow.cpp.o
-/usr/bin/aarch64-linux-gnu-ranlib libwindow_lib.a

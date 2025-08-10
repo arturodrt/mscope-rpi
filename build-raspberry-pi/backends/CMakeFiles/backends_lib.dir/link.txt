@@ -1,2 +1,0 @@
-/usr/bin/aarch64-linux-gnu-ar qc libbackends_lib.a CMakeFiles/backends_lib.dir/imgui.cpp.o CMakeFiles/backends_lib.dir/imguiCustomThemes.cpp.o CMakeFiles/backends_lib.dir/imgui_demo.cpp.o CMakeFiles/backends_lib.dir/imgui_draw.cpp.o CMakeFiles/backends_lib.dir/imgui_impl_glfw.cpp.o CMakeFiles/backends_lib.dir/imgui_impl_opengl3.cpp.o CMakeFiles/backends_lib.dir/imgui_tables.cpp.o CMakeFiles/backends_lib.dir/imgui_widgets.cpp.o CMakeFiles/backends_lib.dir/implot.cpp.o CMakeFiles/backends_lib.dir/implot_items.cpp.o
-/usr/bin/aarch64-linux-gnu-ranlib libbackends_lib.a

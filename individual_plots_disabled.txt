@@ -1,1 +1,0 @@
-Individual plots temporarily disabled due to stability issues. Combined view works perfectly.

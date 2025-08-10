@@ -1,2 +1,0 @@
-/usr/bin/aarch64-linux-gnu-ar qc libserial_lib.a CMakeFiles/serial_lib.dir/serialComms.cpp.o CMakeFiles/serial_lib.dir/csvStorage.cpp.o
-/usr/bin/aarch64-linux-gnu-ranlib libserial_lib.a

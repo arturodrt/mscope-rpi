@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=mscope
-Comment=Real-time serial data visualizer software for microcontrollers
-Exec=mscope-launcher
-Terminal=false
-Type=Application
-StartupNotify=true
-Categories=Electronics;Engineering;Science;
-Icon=mscope

@@ -1,2 +1,0 @@
-/usr/bin/aarch64-linux-gnu-ar qc libui_lib.a CMakeFiles/ui_lib.dir/csvRecordingSettings.cpp.o CMakeFiles/ui_lib.dir/dataReceptionSettings.cpp.o CMakeFiles/ui_lib.dir/generalSettings.cpp.o CMakeFiles/ui_lib.dir/sceneView.cpp.o CMakeFiles/ui_lib.dir/serialSettings.cpp.o CMakeFiles/ui_lib.dir/serialTerminal.cpp.o CMakeFiles/ui_lib.dir/settings.cpp.o CMakeFiles/ui_lib.dir/viewerSettings.cpp.o CMakeFiles/ui_lib.dir/visualizer.cpp.o
-/usr/bin/aarch64-linux-gnu-ranlib libui_lib.a
